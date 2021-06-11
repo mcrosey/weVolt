@@ -22,7 +22,6 @@ function Header() {
                <div className= "header-right">
                    <p>Share your volts</p>
                    <LanguageIcon />
-                   <ExpandMoreIcon />
                    <Avatar />
                </div>
         </div>
