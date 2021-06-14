@@ -12,8 +12,8 @@ router.get('/protected', requireLogin, (req, res)=>{
 })
 
 router.post('/signup', (req, res) =>{
-    const {name, email, password} = req.body
-    if(!email || !password || !name){
+    const {firstName, lastName, email, userName, password} = req.body
+    if(!firstName || !lastName || !email || !userName || !password ){
         res.status(422).json({error: "please add all the required feilds"})
     }
     User.findOne({email:email})
@@ -24,9 +24,11 @@ router.post('/signup', (req, res) =>{
         bcrypt.hash(password, 12)
         .then(hashedpassword=>{
             const user = new User({
+                firstName,
+                lastName,
                 email,
+                userName,
                 password: hashedpassword,
-                name
             })
             user.save()
             .then(user=>{
@@ -44,25 +46,25 @@ router.post('/signup', (req, res) =>{
 
 
 router.post('/signin', (req, res)=>{
-    const {email, password} = req.body
-    if(!email || !password){
-       return res.status(422).json({error:"please add email or password"})
+    const {userName, password} = req.body
+    if(!userName || !password){
+       return res.status(422).json({error:"please add User Name or password"})
     }
-    User.findOne({email:email})
+    User.findOne({userName:userName})
     .then(savedUser=>{
         if(!savedUser){
-           return res.status(422).json({error:"Invalid email or password"})
+           return res.status(422).json({error:"Invalid User Name or password"})
         }
         bcrypt.compare(password, savedUser.password)
         .then(doMatch=>{
             if(doMatch){
                 //res.json({message: "successfully signed in"})
                 const token = jwt.sign({_id:savedUser._id}, JWT_SECRET)
-                const {_id, name, email} = savedUser
-                res.json({token, user:{_id, name, email}})
+                const {_id, userName, email} = savedUser
+                res.json({token, user:{_id, userName, email}})
             }
             else{
-                return res.status(422).json({error:"Invalid email or password"})
+                return res.status(422).json({error:"Invalid userName or password"})
             }
         })
         .catch(err=>{
