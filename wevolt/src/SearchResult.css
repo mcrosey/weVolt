@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.searchResult: hover {
+.searchResult hover {
     opacity: 0.8;
 }
 

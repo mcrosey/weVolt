@@ -13,7 +13,7 @@ function SearchResult({
 }) {
     return (
         <div className='searchResult'>
-           <img src={img} alt="" />
+           
            <FavoriteIcon
            className="searchResult-heart" />
 
@@ -37,6 +37,7 @@ function SearchResult({
                     </div>
                 </div>        
            </div>
+           <img src={img} alt="" />
         </div>
     )
 }

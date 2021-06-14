@@ -7,6 +7,10 @@ import Footer from './Components/Screens/Footer'
 import SearchPage from './Components/Screens/SearchPage'
 import Login from './Components/Screens/Login'
 import Signup from './Components/Screens/Signup'
+import GoogleMaps from './Components/Screens/GoogleMaps'
+import CreateListing from './Components/Screens/CreateListing'
+import GenericInfo from './Components/Screens/GenericInfo'
+
 
 function App() {
   return (
@@ -26,6 +30,18 @@ function App() {
             
             <Route path="/signup">
               <Signup />
+            </Route>
+
+            <Route path="/maps">
+              <GoogleMaps />
+            </Route>
+
+            <Route path="/genericinfo">
+              <GenericInfo />
+            </Route>
+
+            <Route path="/createlisting">
+              <CreateListing />
             </Route>
 
             <Route path="/">

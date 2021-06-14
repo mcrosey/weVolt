@@ -1,9 +1,13 @@
 import React from 'react'
 import '../../Header.css'
-import SearchIcon from "@material-ui/icons/Search";
-import LanguageIcon from "@material-ui/icons/Language";
-import { Avatar,} from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
+import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull';
+import BatteryCharging30Icon from '@material-ui/icons/BatteryCharging30';
+import ExploreIcon from '@material-ui/icons/Explore';
+import PersonIcon from '@material-ui/icons/Person';
 import { Link } from 'react-router-dom'
+
+
 function Header() {
     return (
         <div className= 'header'>
@@ -15,17 +19,28 @@ function Header() {
         />    
         </Link>  
            <div className='header-center'>
-               <input type="text" />
-               <SearchIcon />
+                
+               <input  
+               placeholder="find a provided charger"/>
+               <Link to="/genericinfo">
+               <BatteryChargingFullIcon />
+               </Link>
+              
                </div> 
 
                <div className= "header-right">
-                   
-                   <p>Share your volts</p>
-                   
-                   <LanguageIcon />
+                   <Link to="/createlisting">
+                   <p>Share your volts
+                   <BatteryCharging30Icon />
+                   </p>
+                   </Link>
+
+                   <Link to="/maps">
+                    <ExploreIcon />
+                    </Link>
+
                    <Link to="login">
-                   <Avatar />
+                   <PersonIcon />
                    </Link>
                </div>
         </div>
