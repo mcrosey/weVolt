@@ -17,7 +17,7 @@ router.get('/alllistings', requireLogin,(req, res)=>{
 })
 
 
-router.post('/createlisting', requireLogin, (req, res)=>{
+router.post('mapURI/add', requireLogin, (req, res)=>{
     const {title, body, pic} = req.body
 
     if(!title || !body || !pic){

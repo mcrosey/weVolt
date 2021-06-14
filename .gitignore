@@ -353,3 +353,10 @@ MigrationBackup/
 keys.js
 
 mongoURI
+
+
+.key.js
+
+.hide
+
+.Reducerkeys.js

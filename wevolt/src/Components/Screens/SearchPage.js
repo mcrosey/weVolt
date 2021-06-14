@@ -8,7 +8,6 @@ function SearchPage() {
     return (
         <div className='searchpage'>
             <div className='searchPage-info'>
-                <p>text</p>
                 <h1>Nearby chargers</h1>
                 <Button
                 variant="outlined">Search</Button>
@@ -16,6 +15,15 @@ function SearchPage() {
                 variant="outlined">Price</Button>
                 <Button
                 variant="outlined">Review</Button>
+        
+            <iframe src="https://map.openchargemap.io/?mode=embedded" 
+            allow="geolocation" 
+            frameborder="0" 
+            width="100%" 
+            height="500px">
+                
+            </iframe>
+            
             </div>
             <SearchResult 
                 img="https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1504&q=80"

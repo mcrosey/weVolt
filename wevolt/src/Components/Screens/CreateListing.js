@@ -1,11 +1,11 @@
 import React from 'react'
 
-function CreatePost() {
+function CreateListing() {
     return (
         <div>
-            <h2> this is where you can create a post</h2>
+            
         </div>
     )
 }
 
-export default CreatePost
+export default CreateListing

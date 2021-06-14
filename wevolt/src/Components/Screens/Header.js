@@ -22,7 +22,7 @@ function Header() {
                 
                <input  
                placeholder="find a provided charger"/>
-               <Link to="/genericinfo">
+               <Link to="/search">
                <BatteryChargingFullIcon />
                </Link>
               

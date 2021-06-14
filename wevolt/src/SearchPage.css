@@ -1,18 +1,23 @@
 .searchPage-info {
     padding: 20px;
-}
-
-.searchPage-info > p {
-    margin-bottom: 10px;
-    font-size: 14px;
+    flex-direction: column-reverse;
 }
 
 .searchPage-info > h1 {
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .searchPage-info > button {
     border-radius: 30px;
     text-transform: inherit;
     margin: 5px;
+}
+
+.voltsharedisplay {
+    display: flex;
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    width: 40vw;
 }

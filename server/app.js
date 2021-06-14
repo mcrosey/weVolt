@@ -5,6 +5,8 @@ const PORT = 6000
 const {mongoURI} =require('./keys')
 
 
+//const MapURI = "https://api.openchargemap.io/v3"
+
 
 
 mongoose.connect(mongoURI, {
@@ -29,6 +31,7 @@ app.use(express.json())
 app.use(require('./routes/auth'))
 app.use(require('./routes/post'))
 app.use(require('./routes/user'))
+
 
 
 app.get('/', (req, res)=>{
