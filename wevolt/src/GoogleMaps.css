@@ -1,0 +1,21 @@
+.mappage > h2 {
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.mappage > h5 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.map-view {
+    padding: 60px;
+    padding-top: 20px;
+    align-content: center;
+    border: 1px color black;
+    
+}

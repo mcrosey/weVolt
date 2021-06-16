@@ -5,6 +5,8 @@ import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull';
 import BatteryCharging30Icon from '@material-ui/icons/BatteryCharging30';
 import ExploreIcon from '@material-ui/icons/Explore';
 import PersonIcon from '@material-ui/icons/Person';
+import HomeIcon from '@material-ui/icons/Home';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Link } from 'react-router-dom'
 
 
@@ -20,8 +22,8 @@ function Header() {
         </Link>  
            <div className='header-center'>
                 
-               <input  
-               placeholder="find a provided charger"/>
+               {/* <input  
+               placeholder="find a provided charger"/> */}
                <Link to="/search">
                <BatteryChargingFullIcon />
                </Link>
@@ -39,9 +41,18 @@ function Header() {
                     <ExploreIcon />
                     </Link>
 
-                   <Link to="login">
+                    <Link to="/gmap">
+                    <ExploreIcon />
+                    </Link>
+
+                   <Link to="/profile">
                    <PersonIcon />
                    </Link>
+
+                   <Link to="/login">
+                    <ExitToAppIcon />
+                    </Link>
+
                </div>
         </div>
     )

@@ -7,7 +7,7 @@ const Post = mongoose.model("Post")
 router.get('/alllistings', requireLogin,(req, res)=>{
     Post.find()
     .populate("postedBy" ,"_id name")
-    .populate("comments.postedBy","_id name")
+    .populate("review.postedBy","_id name")
     .then((posts)=>{
         res.json({posts})
     }).catch(err=>{
@@ -17,19 +17,22 @@ router.get('/alllistings', requireLogin,(req, res)=>{
 })
 
 
-router.post('mapURI/add', requireLogin, (req, res)=>{
-    const {title, body, pic} = req.body
+router.post('/createlisting', requireLogin, (req, res)=>{
+    const {address, description, price, pic} = req.body
 
-    if(!title || !body || !pic){
+    if(!address || !description || !price || !pic){
         return  res.status(422).json({error:"Plase add all the fields"})
       }
       req.user.password = undefined
       const post = new Post({
-          title,
-          body,
+          address,
+          description,
+          price,
           photo: pic,
           postedBy:req.user
+          
       })
+      console.log(post)
       post.save().then(result=>{
           res.json({post:result})
       })
@@ -50,17 +53,31 @@ router.get('/mylisting', requireLogin, (req, res)=>{
     })
 })
 
-router.put('/comment', requireLogin, (req, res)=>{
+router.put('/heart',requireLogin,(req,res)=>{
+    Post.findByIdAndUpdate(req.body.postId,{
+        $push:{heart:req.user._id}
+    },{
+        new:true
+    }).exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        }else{
+            res.json(result)
+        }
+    })
+})
+
+router.put('/review', requireLogin, (req, res)=>{
 const comment = {
     text:req.body.text,
     postedBy:req.user._id
     }
     Post.findByIdAndUpdate(req.body.postId,{
-        $push:{comments:comment}
+        $push:{review:review}
     },{
         new:true
     })
-    .populate("comments.postedBy", "_id name")
+    .populate("review.postedBy", "_id name")
     .populate("postedBy", "_id name")
     .exec((err, result)=>{
         if(err){

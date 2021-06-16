@@ -1,28 +1,38 @@
-import React from 'react'
 import '../../SearchResult.css'
+import React from 'react'
+// import React, {useState, useEffect, useContext} from 'react'
+// import {UserContext} from '../../App'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import StarIcon from '@material-ui/icons/Star';
 
+//this is the function to pull in search page info
+
+
+
+
+
 function SearchResult({
     img,
-    location,
-    title,
+    address,
     description,
+    review,
     star,
     price,
 }) {
+    
     return (
+
+            
         <div className='searchResult'>
            
-           <FavoriteIcon
-           className="searchResult-heart" />
+           
 
            <div className='searchResult-info'>
                <div className='searchResult-infoTop'>
-                   <p>{location}</p>
-                   <h3>{title}</h3>
+                   <p>{address}</p>
+                   <h3>{description}</h3>
                    <p>___</p>
-                   <p>{description}</p>
+                   <p>{review}</p>
                </div>
                <div className='searchResult-infoBottom' >
                    <div className="searchResult-stars">

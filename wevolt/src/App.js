@@ -1,5 +1,6 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import React, {useEffect, createContext, useReducer, useContext} from 'react'
+import { BrowserRouter, Switch, Route, Router,  useHistory} from "react-router-dom"
+import Axios from 'axios'
 import "./App.css"
 import Home from './Components/Screens/Home'
 import Header from './Components/Screens/Header'
@@ -7,16 +8,32 @@ import Footer from './Components/Screens/Footer'
 import SearchPage from './Components/Screens/SearchPage'
 import Login from './Components/Screens/Login'
 import Signup from './Components/Screens/Signup'
-import GoogleMaps from './Components/Screens/GoogleMaps'
+import ElectricMap from './Components/Screens/ElectricMap'
 import CreateListing from './Components/Screens/CreateListing'
-import GenericInfo from './Components/Screens/GenericInfo'
+import GMap from './Components/Screens/GoogleMap'
+import Profile from './Components/Screens/Profile'
+import {reducer, intialState} from './Reducer/userReducer'
+import ElectricMaps from './Components/Screens/ElectricMap'
+export const UserContext = createContext()
 
 
-function App() {
-  return (
-    <div className = "App">
-      <Router>
-        <Header />
+const Routing = () =>{
+  const history = useHistory()
+  const{state, dispatch} = useContext(UserContext)
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("user"))
+    
+    if(user){
+      dispatch({type:"USER", payload:user})
+      history.push('/')
+    }else{
+      history.push('/login')
+    }
+  },[])
+
+return(
+  
+        
 
         <Switch>
             <Route path="/search">
@@ -33,28 +50,49 @@ function App() {
             </Route>
 
             <Route path="/maps">
-              <GoogleMaps />
+              <ElectricMap />
             </Route>
 
-            <Route path="/genericinfo">
-              <GenericInfo />
+            <Route path="/gmap">
+              <GMap />
             </Route>
 
             <Route path="/createlisting">
               <CreateListing />
             </Route>
 
-            <Route path="/">
+            <Route path="/profile">
+              <Profile />
+            </Route>
+
+            <Route exact path="/">
               <Home />
             </Route>
           
         </Switch>
-        <Footer />
+        
 
-      </Router>
       
-    </div>
+  )
+}
+
+
+
+
+function App() {
+
+  const [state, dispatch] =useReducer( reducer, intialState)
+  return (
+    <UserContext.Provider value={{state, dispatch}}>
+    <BrowserRouter>
+      <Header />
+      <Routing />
+      <Footer />
+    </BrowserRouter>
+    </UserContext.Provider>
   );
 }
+
+  
 
 export default App;

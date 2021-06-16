@@ -23,7 +23,7 @@
     margin-left: 20px;
     padding: 10px;
     height: 30px;
-    border: 1px solid lightgray;
+    border: 1px solid rgb(160, 130, 130);
     border-radius: 999px;
     background-color: white;
 }
@@ -36,8 +36,10 @@
 
 .header-right{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: right;
+    justify-content:space-evenly;
     width: 15vw;
+    
     margin-right: 80px;
+    padding: 20px;
 }
