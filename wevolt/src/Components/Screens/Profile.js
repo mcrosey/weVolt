@@ -10,7 +10,7 @@ import '../../Profile.css'
 
 function Profile() {
         const [mypics, setPics] = useState([])
-        // const {state,dispatch} = useContext(UserContext)
+        const {state,dispatch} = useContext(UserContext)
         useEffect(()=>{
             fetch('/mylisting',{
                 headers:{
@@ -19,18 +19,19 @@ function Profile() {
             }).then(res=>res.json())
             .then(result=>{
                 setPics(result.mypost[0])
+                console.log(result)
                 console.log(mypics)
             })
     
-        },[])
+},[])
+        
 
-
-    return (
+return (
 
 //this needs to be updated to display actual user name
       <div className='searchpage'>
       <div className='searchPage-info'>
-          <h1>{mypics._id}</h1>
+          
           
           
           
@@ -41,13 +42,14 @@ function Profile() {
       <div className='searchResult'>
       <div className='searchResult-info'>
           <div className='searchResult-infoTop'>
+          <h4>{state?state.userName: "loading"}</h4>
               <p>{mypics.address}</p>
               <h3>{mypics.description}</h3>
               <p>___</p>
-              <p>{mypics.review}</p>
+              <p>{mypics.reviews}Reviews</p>
               
               <Button
-          variant="outlined">Review</Button>
+          variant="outlined">Leave Review</Button>
 
           </div>
           <div className='searchResult-infoBottom' >

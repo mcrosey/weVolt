@@ -1,10 +1,11 @@
 .searchResult {
+  background-color: lightgoldenrodyellow;
   display: flex;
   position: relative;
   margin: 20px;
   padding: 20px;
   border-bottom: 1px solid lightgray;
-  opacity: 1;
+  opacity: 20;
   cursor: pointer;
 }
 
@@ -71,3 +72,8 @@
   right: 30px;
 }
 
+.searchResult-price > h2 {
+  font-size: 30px;
+  font-weight: 200;
+  display: flex;
+}

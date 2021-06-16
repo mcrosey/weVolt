@@ -66,7 +66,7 @@ const CreateListing = ()=>{
             maxWidth:"500px",
             padding:"20px",
             textAlign:"center",
-            backgroundColor:"greenyellow"
+            backgroundColor:"white"
         }}
         >
             <input 

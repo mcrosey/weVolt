@@ -4,14 +4,10 @@ import {UserContext} from '../../App'
 import { Button, ButtonGroup } from '@material-ui/core'
 import '../../SearchPage.css'
 import StarIcon from '@material-ui/icons/Star';
-
 import SearchResult from './SearchResult'
 
-//add fetch requests to get the card
 
-// function SearchPage() {
 
-   //add fetch requests to get the card info
    const SearchPage = ()=>{
     const [data, setData] = useState([])
     const {state,dispatch} = useContext(UserContext)
@@ -29,81 +25,20 @@ import SearchResult from './SearchResult'
         })
     },[])
 
-// const heartPost = (id)=>{
-//     fetch('/heart',{
-//         method:"put",
-//         headers:{
-//             "Content-Type":"application/json",
-//             "Authorization":"Bearer "+localStorage.getItem("jwt")
-//         },
-//         body:JSON.stringify({
-//             postId:id
-//         })
-//     }).then(res=>res.json())
-//     .then(result=>{
-//                 console.log(result)
-//         const newData = data.map(item=>{
-//             if(item._id==result._id){
-//                 return result
-//             }else{
-//                 return item
-//             }
-//         })
-//         setData(newData)
-//     }).catch(err=>{
-//         console.log(err)
-//     })
-// }
 
-// const postReview = (text, postId)=>{
-//     fetch('/review',{
-//         method:"put",
-//         headers:{
-//             "Content-Type":"application/json",
-//             "Authorization":"Bearer "+localStorage.getItem("jwt")
-//         },
-//         body:JSON.stringify({
-//             postId,
-//             text
-//         })
-//     }).then(res=>res.json())
-//     .then(result=>{
-//         console.log(result)
-//         const newData = data.map(item=>{
-//             if(item._id == result._id){
-//                 return result
-//             }else{
-//                 return item
-//             }
-//         })
-//         setData(newData)
-//     }).catch(err=>{
-//         console.log(err)
-//     })
-// }
+return (
+            
+            
+    <div className="mapview">
+        
 
-// const deletePost = (postid)=>{
-//     fetch(`/deletepost/${postid}`,{
-//         method:"delete",
-//         headers:{
-//             Authorization:"Bearer "+localStorage.getItem("jwt")
-//         }
-//     }).then(res=>res.json())
-//     .then(result=>{
-//         console.log(result)
-//         const newData = data.filter(item=>{
-//             return item._id !== result._id
-//         })
-//         setData(newData)
-//     })
-// }
+    
 
 
-    return (
        
         <div className='searchpage'>
       <div className='searchPage-info'>
-          <h1>{data._id}</h1>
+          
           
           
           
@@ -114,6 +49,7 @@ import SearchResult from './SearchResult'
       <div className='searchResult'>
       <div className='searchResult-info'>
           <div className='searchResult-infoTop'>
+          <p>Host Name:<br></br>{state?state.userName: "loading"}</p>
               <p>{data.address}</p>
               <h3>{data.description}</h3>
               <p>___</p>
@@ -141,7 +77,7 @@ import SearchResult from './SearchResult'
       <img src={data.photo} alt="" />
    </div>
 
-
+</div>
 </div>
 
 

@@ -44,7 +44,7 @@ router.post('/createlisting', requireLogin, (req, res)=>{
 
 router.get('/mylisting', requireLogin, (req, res)=>{
     Post.find({postedBy:req.user._id})
-    .populate("PostedBy", "_id name")
+    .populate("PostedBy", "_id userName")
     .then(mypost=>{
         res.json({mypost})
     })
@@ -68,7 +68,7 @@ router.put('/heart',requireLogin,(req,res)=>{
 })
 
 router.put('/review', requireLogin, (req, res)=>{
-const comment = {
+const review = {
     text:req.body.text,
     postedBy:req.user._id
     }
