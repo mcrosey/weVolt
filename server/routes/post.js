@@ -6,7 +6,7 @@ const geocoder = require('../middleware/geocoder')
 
 const Post = mongoose.model("Post")
 
-router.get('/alllistings', requireLogin,(req, res)=>{
+router.get('/alllistings', (req, res)=>{
     Post.find()
     .populate("postedBy" ,"_id name")
     .populate("review.postedBy","_id name")
@@ -75,11 +75,11 @@ const review = {
     postedBy:req.user._id
     }
     Post.findByIdAndUpdate(req.body.postId,{
-        $push:{review:review}
+        $push:{reviews:review}
     },{
         new:true
     })
-    .populate("review.postedBy", "_id name")
+    .populate("reviews.postedBy", "_id name")
     .populate("postedBy", "_id name")
     .exec((err, result)=>{
         if(err){

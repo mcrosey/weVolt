@@ -11,7 +11,6 @@ import ElectricMap from './Components/Screens/ElectricMap'
 import CreateListing from './Components/Screens/CreateListing'
 import Profile from './Components/Screens/Profile'
 import {reducer, intialState} from './Reducer/userReducer'
-import Mapbox from './Components/Screens/Mapbox'
 
 
 export const UserContext = createContext()
@@ -42,10 +41,6 @@ return(
             
             <Route path="/login">
               <Login />
-            </Route>
-
-            <Route path="/mapbox">
-              <Mapbox />
             </Route>
             
             <Route path="/signup">

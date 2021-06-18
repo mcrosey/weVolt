@@ -9,11 +9,11 @@ function Home() {
             <Banner />
             <div></div>
             <div className='home-section'>
-                <Card />
+                {/* <Card />
                 <div />
                 <Card />
                 <div />
-                <Card />
+                <Card /> */}
             </div>
             
         </div>

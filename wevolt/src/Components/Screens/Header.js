@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import '../../Header.css'
 import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull';
 import BatteryCharging30Icon from '@material-ui/icons/BatteryCharging30';
 import ExploreIcon from '@material-ui/icons/Explore';
 import PersonIcon from '@material-ui/icons/Person';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { UserContext } from '../../App';
+
 
 
 function Header() {
+    const {state, dispatch} = useContext(UserContext)
+    const history = useHistory()
     return (
         <div className= 'header'>
             <Link to="/">
@@ -18,37 +22,51 @@ function Header() {
             alt="logo"
         />    
         </Link>  
-           <div className='header-center'>
-                
-               {/* <input  
-               placeholder="find a provided charger"/> */}
-               <Link to="/search">
-               <BatteryChargingFullIcon />
-               </Link>
-              
-               </div> 
+        <button className="btn #c62828 red darken-3"
+                onClick={()=>{
+                  localStorage.clear()
+                  dispatch({type:"CLEAR"})
+                  history.push('/login')
+                }}
+                >
+                    Logout
+                </button>
 
                <div className= "header-right">
+               <Link to="/search">
+               <BatteryChargingFullIcon />
+               <p>
+                   Find a weVolt
+               </p>
+               </Link>
+
                    <Link to="/createlisting">
-                   <p>Share your volts
                    <BatteryCharging30Icon />
+                   <p>Share volts 
+                   
                    </p>
                    </Link>
 
                    <Link to="/maps">
                     <ExploreIcon />
+                    <p>
+                        Need a level 3?
+                    </p>
                     </Link>
 
-                    <Link to="/mapbox">
-                    <ExploreIcon />
-                    </Link>
 
                    <Link to="/profile">
                    <PersonIcon />
+                   <p>
+                       View profile
+                   </p>
                    </Link>
 
                    <Link to="/login">
                     <ExitToAppIcon />
+                    <p>
+                        Log-in
+                    </p>
                     </Link>
 
                </div>

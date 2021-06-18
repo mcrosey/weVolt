@@ -4,8 +4,8 @@ import {UserContext} from '../../App'
 import { Button, ButtonGroup } from '@material-ui/core'
 import '../../SearchPage.css'
 import StarIcon from '@material-ui/icons/Star';
-import SearchResult from './SearchResult'
-
+import Mapbox from './Mapbox'
+import Card from './Card'
 
 
    const SearchPage = ()=>{
@@ -18,8 +18,7 @@ import SearchResult from './SearchResult'
             }
         }).then(res=>res.json())
         .then(result =>{
-            
-            setData(result.posts[3])
+            setData(result.posts[0])
             console.log(result.posts)
             console.log(data)
         })
@@ -30,23 +29,17 @@ return (
             
             
     <div className="mapview">
-        
+        <Mapbox />
 
-    
-
-
-       
         <div className='searchpage'>
       <div className='searchPage-info'>
-          
-          
-          
-          
-      
+   
+      </div>
+      <div className="carddisplay" >
+          <Card />
       </div>
 
-
-      <div className='searchResult'>
+      {/* <div className='searchResult'>
       <div className='searchResult-info'>
           <div className='searchResult-infoTop'>
           <p>Host Name:<br></br>{state?state.userName: "loading"}</p>
@@ -75,7 +68,7 @@ return (
            </div>        
       </div>
       <img src={data.photo} alt="" />
-   </div>
+   </div> */}
 
 </div>
 </div>

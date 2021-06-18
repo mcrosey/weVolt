@@ -2,18 +2,20 @@ import RoomIcon from '@material-ui/icons/Room';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
-
-
+import StarIcon from '@material-ui/icons/Star';
+import '../../Mapbox.css'
+import '../../Card.css'
 
 
 function Map() {
   const [pins, setPins] = useState([]);
   const [viewport, setViewport] = useState({
-    width: '50vw',
-    height: '50vw',
+    width: '90vw',
+    height: '80vh',
+    margin: '180px',
     latitude: 35.9606,
     longitude: -83.9207,
-    zoom: 4
+    zoom: 5
   });
 
   useEffect(()=>{
@@ -27,6 +29,7 @@ function Map() {
             console.log(result)
             setPins(result.posts)
         })
+        console.log(pins)
     
         
         
@@ -43,7 +46,7 @@ function Map() {
       {...viewport}
       mapboxApiAccessToken="pk.eyJ1IjoibWNyb3NleSIsImEiOiJja3EwZHJ1MjQwM3d3MnF0ZWl1MGk0bmtpIn0.dKJRik0t3oT61z3djtOjnA"
       onViewportChange={nextViewport => setViewport(nextViewport)}
-      //create and add mapstyle, under account, publish then copy link
+      mapStyle="mapbox://styles/mcrosey/ckq1solmo1ol518qv9rsgtorg"
     >
         {pins.map(item=>(
             
@@ -58,14 +61,20 @@ function Map() {
             
             <RoomIcon style={{fonstsize:viewport.zoom * 7, color: 'blue',}} />
             </Marker> 
-            {/* <Popup
-            latitude={37.7577}
-            longitude={-122.4376}
+            <Popup
+            latitude={item.location.coordinates[1]}
+            longitude={item.location.coordinates[0]}
             closeButton={true}
-            closeOnClick={false}
+            closeOnClick={true}
             anchor="top" >
-                <div>you are here</div>
-            </Popup>  */}
+                <div className="indexcard">
+                  <label>Address</label>
+                  <h4 className="place">{item.address}</h4>
+                  <label>Rating</label>
+                  <h4 className="rating">{item.heart.length}<StarIcon /></h4>
+                  
+                </div>
+            </Popup> 
             </div>  
             ))}
            </ReactMapGL> 
