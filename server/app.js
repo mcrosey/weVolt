@@ -5,10 +5,6 @@ const PORT = 6000
 const {mongoURI} =require('./keys')
 
 
-//const MapURI = "https://api.openchargemap.io/v3"
-
-
-
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -22,6 +18,31 @@ mongoose.connection.on('connected', ()=>{
 mongoose.connection.on('error', (err)=>{
     console.log("error connecting", err)
 }) 
+
+// const {MongoClient} = require('mongodb');
+
+// async function main(){
+
+//     const client = new MongoClient(mongoURI);
+// try{
+//     await client.connect();
+
+//     await listDatabases(client);
+
+// }catch (e) {
+//     console.log(e);
+// }finally {
+//     await client.close();
+// }
+// }
+// main().catch(console.error);
+
+// async function listDatabases(client){
+//     databasesList = await client.db().admin().listDataBases();
+
+//     console.log("Databases:");
+//     databasesList.databases.foreach(db => console.log(` - ${db.name}`));
+// };
 
 require('./models/user')
 require('./models/post')

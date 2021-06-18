@@ -357,4 +357,10 @@ mongoURI
 
 .key.js
 
-.hide
+
+.secret
+/secret
+*.secret
+*.Api
+.Api
+/Api 

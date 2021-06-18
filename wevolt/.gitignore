@@ -29,3 +29,10 @@ yarn-error.log*
 
 /Api
 /requests
+
+.secret
+/secret
+*.secret
+*.Api
+.Api
+/api

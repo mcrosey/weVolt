@@ -1,16 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../../App';
 import StarIcon from '@material-ui/icons/Star';
-import { Button, ButtonGroup } from '@material-ui/core'
-
-
+import { Button } from '@material-ui/core'
 import '../../Profile.css'
 
 
 
 function Profile() {
         const [mypics, setPics] = useState([])
-        const {state,dispatch} = useContext(UserContext)
+        const {state} = useContext(UserContext)
         useEffect(()=>{
             fetch('/mylisting',{
                 headers:{
@@ -19,16 +17,18 @@ function Profile() {
             }).then(res=>res.json())
             .then(result=>{
                 setPics(result.mypost[0])
-                console.log(result)
-                console.log(mypics)
             })
+
+
     
 },[])
-        
+
+
 
 return (
-
-//this needs to be updated to display actual user name
+      
+        <>
+        
       <div className='searchpage'>
       <div className='searchPage-info'>
           
@@ -37,7 +37,7 @@ return (
           
       
       </div>
-
+    
 
       <div className='searchResult'>
       <div className='searchResult-info'>
@@ -46,7 +46,7 @@ return (
               <p>{mypics.address}</p>
               <h3>{mypics.description}</h3>
               <p>___</p>
-              <p>{mypics.reviews}Reviews</p>
+              <p>{mypics.reviews.length}Reviews</p>
               
               <Button
           variant="outlined">Leave Review</Button>
@@ -59,7 +59,7 @@ return (
                   <StarIcon
                   className="searchResult-star" />
                    <p>
-                       <strong>{mypics.heart}</strong>
+                       <strong>{mypics.heart.length}</strong>
                    </p>
               </div>
                <div className='searchResult-price'>
@@ -73,7 +73,8 @@ return (
 
 </div>
 
-        
+
+</>        
   
     )
 }

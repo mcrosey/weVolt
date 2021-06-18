@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const requireLogin = require('../middleware/requireLogin')
+const geocoder = require('../middleware/geocoder')
+
 const Post = mongoose.model("Post")
 
 router.get('/alllistings', requireLogin,(req, res)=>{
@@ -33,7 +35,7 @@ router.post('/createlisting', requireLogin, (req, res)=>{
           
       })
       console.log(post)
-      post.save().then(result=>{
+      post.save(geocoder).then(result=>{
           res.json({post:result})
       })
       .catch(err=>{

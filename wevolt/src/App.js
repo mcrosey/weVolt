@@ -1,6 +1,5 @@
 import React, {useEffect, createContext, useReducer, useContext} from 'react'
-import { BrowserRouter, Switch, Route, Router,  useHistory} from "react-router-dom"
-import Axios from 'axios'
+import { BrowserRouter, Switch, Route,  useHistory} from "react-router-dom"
 import "./App.css"
 import Home from './Components/Screens/Home'
 import Header from './Components/Screens/Header'
@@ -10,16 +9,17 @@ import Login from './Components/Screens/Login'
 import Signup from './Components/Screens/Signup'
 import ElectricMap from './Components/Screens/ElectricMap'
 import CreateListing from './Components/Screens/CreateListing'
-import GMap from './Components/Screens/GoogleMap'
 import Profile from './Components/Screens/Profile'
 import {reducer, intialState} from './Reducer/userReducer'
-import ElectricMaps from './Components/Screens/ElectricMap'
+import Mapbox from './Components/Screens/Mapbox'
+
+
 export const UserContext = createContext()
 
 
 const Routing = () =>{
   const history = useHistory()
-  const{state, dispatch} = useContext(UserContext)
+  const{dispatch} = useContext(UserContext)
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem("user"))
     
@@ -44,6 +44,9 @@ return(
               <Login />
             </Route>
 
+            <Route path="/mapbox">
+              <Mapbox />
+            </Route>
             
             <Route path="/signup">
               <Signup />
@@ -53,9 +56,6 @@ return(
               <ElectricMap />
             </Route>
 
-            <Route path="/gmap">
-              <GMap />
-            </Route>
 
             <Route path="/createlisting">
               <CreateListing />

@@ -6,7 +6,7 @@ import StarIcon from '@material-ui/icons/Star';
 function Card({source, title, description, price}) {
 
     const [data, setData] = useState([])
-    const {state,dispatch} = useContext(UserContext)
+    const {state, dispatch} = useContext(UserContext)
     useEffect(()=>{
         fetch('/alllistings', {
             headers:{
@@ -32,7 +32,7 @@ function Card({source, title, description, price}) {
         .then(result=>{
                   console.log(result)
           const newData = data.map(item=>{
-              if(item._id==result._id){
+              if(item._id===result._id){
                   return result
               }else{
                   return item
@@ -59,7 +59,7 @@ const leaveReview = (text, postId)=>{
     .then(result=>{
         console.log(result)
         const newData = data.map(item=>{
-            if(item._id == result._id){
+            if(item._id === result._id){
                 return result
             }else{
                 return item
@@ -83,7 +83,7 @@ const leaveReview = (text, postId)=>{
                 
   
                 <div className="card-image">
-                    <img src={item.photo} />
+                    <img src={item.photo} alt="charger display"/>
                 </div>
                     <div className="card-content">
                     <StarIcon
