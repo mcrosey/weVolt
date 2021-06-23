@@ -14,10 +14,23 @@
     margin: 5px;
 }
 
-.voltsharedisplay {
+.carddisplay {
     display: flex;
-    position: relative;
+    position: absolute;
     margin: 20px;
     padding: 20px;
     width: 40vw;
 }
+
+
+.column {
+    float: left;
+    width: 33.33%;
+  }
+  
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

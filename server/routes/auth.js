@@ -12,8 +12,8 @@ router.get('/protected', requireLogin, (req, res)=>{
 })
 
 router.post('/signup', (req, res) =>{
-    const {firstName, lastName, email, userName, password} = req.body
-    if(!firstName || !lastName || !email || !userName || !password ){
+    const {firstName, lastName, phoneNumber, email, userName, password} = req.body
+    if(!firstName || !lastName || !phoneNumber || !email || !userName || !password ){
         res.status(422).json({error: "please add all the required feilds"})
     }
     User.findOne({email:email})
@@ -26,6 +26,7 @@ router.post('/signup', (req, res) =>{
             const user = new User({
                 firstName,
                 lastName,
+                phoneNumber,
                 email,
                 userName,
                 password: hashedpassword,

@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {UserContext} from '../../App'
 import StarIcon from '@material-ui/icons/Star';
-
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 
 function Card({source, title, description, price}) {
 
@@ -18,8 +19,8 @@ function Card({source, title, description, price}) {
             setData(result.posts)
         })
     },[])
-    const heartPost = (id)=>{
-        fetch('/heart',{
+    const happyPost = (id)=>{
+        fetch('/happyface',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -43,6 +44,32 @@ function Card({source, title, description, price}) {
             console.log(err)
         })
   }
+
+  const sadPost = (id)=>{
+    fetch('/sadface',{
+        method:"put",
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("jwt")
+        },
+        body:JSON.stringify({
+            postId:id
+        })
+    }).then(res=>res.json())
+    .then(result=>{
+              console.log(result)
+      const newData = data.map(item=>{
+          if(item._id==result._id){
+              return result
+          }else{
+              return item
+          }
+      })
+      setData(newData)
+    }).catch(err=>{
+        console.log(err)
+    })
+}
   
 const leaveReview = (text, postId)=>{
     fetch('/review',{
@@ -86,11 +113,17 @@ const leaveReview = (text, postId)=>{
                     <img src={item.photo} alt="charger display"/>
                 </div>
                     <div className="card-content">
-                    <StarIcon
+                    <InsertEmoticonIcon
                   className="searchResult-star" 
-                    onClick={()=>{heartPost(item._id)}}
+                    onClick={()=>{happyPost(item._id)}}
                     />
-                    <h6>{item.heart.length} STARS</h6>
+                    <h6>{item.happyface.length} Recommend this charger</h6>
+
+                    <SentimentVeryDissatisfiedIcon
+                  className="searchResult-star" 
+                    onClick={()=>{sadPost(item._id)}}
+                    />
+                    <h6>{item.sadface.length} Would not recommend</h6>
                     
                         <h5>{item.address}</h5>
                         <h4>{item.description}</h4>

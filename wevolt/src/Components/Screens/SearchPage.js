@@ -1,11 +1,12 @@
 //import React from 'react'
 import React, {useState, useEffect, useContext} from 'react'
 import {UserContext} from '../../App'
-import { Button, ButtonGroup } from '@material-ui/core'
+// import { Button, ButtonGroup } from '@material-ui/core'
 import '../../SearchPage.css'
 import StarIcon from '@material-ui/icons/Star';
 import Mapbox from './Mapbox'
 import Card from './Card'
+import { Grid,  Button} from "@material-ui/core";
 
 
    const SearchPage = ()=>{
@@ -35,8 +36,13 @@ return (
       <div className='searchPage-info'>
    
       </div>
+      {/* <div class="row" > */}
+          <div class="container">
       <div className="carddisplay" >
+      
           <Card />
+          {/* </div> */}
+          </div>
       </div>
 
       {/* <div className='searchResult'>

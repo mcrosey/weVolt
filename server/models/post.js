@@ -30,7 +30,8 @@ const postSchema = new mongoose.Schema({
         type: String,
         required:true
     },
-    heart:[{type:ObjectId, ref:"User"}],
+    happyface:[{type:ObjectId, ref:"User"}],
+    sadface:[{type:ObjectId, ref:"User"}],
     reviews:[{
         text:String,
         postedBy:{type:ObjectId, ref:"User"}

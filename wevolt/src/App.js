@@ -10,6 +10,8 @@ import Signup from './Components/Screens/Signup'
 import ElectricMap from './Components/Screens/ElectricMap'
 import CreateListing from './Components/Screens/CreateListing'
 import Profile from './Components/Screens/Profile'
+// import SMSForm from './Components/Screens/Message'
+import SMS from './Components/Screens/SMS'
 import {reducer, intialState} from './Reducer/userReducer'
 
 
@@ -49,6 +51,12 @@ return(
 
             <Route path="/maps">
               <ElectricMap />
+            </Route>
+
+            
+
+            <Route path="/message">
+              <SMS />
             </Route>
 
 

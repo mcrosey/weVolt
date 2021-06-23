@@ -3,6 +3,13 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const requireLogin = require('../middleware/requireLogin')
 const geocoder = require('../middleware/geocoder')
+// const accountSid = 'ACaffb76c56918b16443c279305e84b466';
+// const authToken = 'e6e3816577851033ffc54bf1875608f6';
+// const twilio = require('twilio')
+// const client =  new twilio(
+//     accountSid,
+//     authToken
+//   );
 
 const Post = mongoose.model("Post")
 
@@ -55,9 +62,23 @@ router.get('/mylisting', requireLogin, (req, res)=>{
     })
 })
 
-router.put('/heart',requireLogin,(req,res)=>{
+router.put('/happyface',requireLogin,(req,res)=>{
     Post.findByIdAndUpdate(req.body.postId,{
-        $push:{heart:req.user._id}
+        $push:{happyface:req.user._id}
+    },{
+        new:true
+    }).exec((err,result)=>{
+        if(err){
+            return res.status(422).json({error:err})
+        }else{
+            res.json(result)
+        }
+    })
+})
+
+router.put('/sadface',requireLogin,(req,res)=>{
+    Post.findByIdAndUpdate(req.body.postId,{
+        $push:{sadface:req.user._id}
     },{
         new:true
     }).exec((err,result)=>{
@@ -107,6 +128,26 @@ router.delete('/deletelisting/:postId',requireLogin,(req,res)=>{
         }
     })
 })
+
+// router.post('https://api.twilio.com/2010-04-01/Accounts/ACaffb76c56918b16443c279305e84b466/Messages.json', (req, res) => {
+//     res.header('Content-Type', 'application/json');
+    
+    
+//     messages.create({
+        
+//         To: req.body.to,
+//         From: +13237468398,
+//         Body: req.body.body
+//       })
+//     //   .then(message => console.log(message.sid));
+//       .then(() => {
+//         res.send(JSON.stringify({ success: true }));
+//       })
+//       .catch(err => {
+//         console.log(err);
+//         res.send(JSON.stringify({ success: false }));
+//       });
+//   });
 
 
 module.exports = router

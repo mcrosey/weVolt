@@ -62,6 +62,15 @@ function Header() {
                    </p>
                    </Link>
 
+
+                   <Link to="/message">
+                   <PersonIcon />
+                   <p>
+                       Message
+                   </p>
+                   </Link>
+
+
                    <Link to="/login">
                     <ExitToAppIcon />
                     <p>

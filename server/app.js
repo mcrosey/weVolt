@@ -3,6 +3,11 @@ const app = express()
 const mongoose = require('mongoose')
 const PORT = 6000
 const {mongoURI} =require('./keys')
+const cors =require ('cors');
+const twilio =require ('twilio');
+const accountSid = 'ACaffb76c56918b16443c279305e84b466';
+const authToken = 'e6e3816577851033ffc54bf1875608f6';
+const client = require ('twilio') (accountSid, authToken);
 
 
 mongoose.connect(mongoURI, {
@@ -19,30 +24,6 @@ mongoose.connection.on('error', (err)=>{
     console.log("error connecting", err)
 }) 
 
-// const {MongoClient} = require('mongodb');
-
-// async function main(){
-
-//     const client = new MongoClient(mongoURI);
-// try{
-//     await client.connect();
-
-//     await listDatabases(client);
-
-// }catch (e) {
-//     console.log(e);
-// }finally {
-//     await client.close();
-// }
-// }
-// main().catch(console.error);
-
-// async function listDatabases(client){
-//     databasesList = await client.db().admin().listDataBases();
-
-//     console.log("Databases:");
-//     databasesList.databases.foreach(db => console.log(` - ${db.name}`));
-// };
 
 require('./models/user')
 require('./models/post')
@@ -52,12 +33,24 @@ app.use(express.json())
 app.use(require('./routes/auth'))
 app.use(require('./routes/post'))
 app.use(require('./routes/user'))
-
+app.use(cors());
 
 
 app.get('/', (req, res)=>{
     res.send("hello world")
 })
+
+app.get('/sendtext', (req, res)=>{
+    res.send('Hello to the twilio server')
+    const { recipient, textmessage } = req.query;
+    client.messages
+    .create({
+        body: textmessage,
+        to: recipient,
+        from: '+13237468398'
+    }).then((message)=> console.log(message.body));
+})
+
 
 app.listen(PORT, ()=>{
     console.log('server is running on' , PORT)

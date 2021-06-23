@@ -5,6 +5,8 @@ import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import StarIcon from '@material-ui/icons/Star';
 import '../../Mapbox.css'
 import '../../Card.css'
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 
 
 function Map() {
@@ -70,9 +72,11 @@ function Map() {
                 <div className="indexcard">
                   <label>Address</label>
                   <h4 className="place">{item.address}</h4>
-                  <label>Rating</label>
-                  <h4 className="rating">{item.heart.length}<StarIcon /></h4>
-                  
+                  <label>Recommended</label>
+                  <h4 className="rating">{item.happyface.length}<InsertEmoticonIcon /></h4>
+                  <label>Don't Recommend</label>
+                  <h4 className="rating">{item.sadface.length}<SentimentVeryDissatisfiedIcon /></h4>
+                 
                 </div>
             </Popup> 
             </div>  

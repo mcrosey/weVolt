@@ -4,7 +4,6 @@ import React from 'react'
 // import {UserContext} from '../../App'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import StarIcon from '@material-ui/icons/Star';
-
 //this is the function to pull in search page info
 
 
@@ -36,11 +35,13 @@ function SearchResult({
                </div>
                <div className='searchResult-infoBottom' >
                    <div className="searchResult-stars">
-                       <StarIcon
+                       {/* <StarIcon
                        className="searchResult-star" />
                         <p>
                             <strong>{star}</strong>
-                        </p>
+                        </p> */}
+                       
+
                    </div>
                     <div className='searchResult-price'>
                         <h2>{price}</h2>
