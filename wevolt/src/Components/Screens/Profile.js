@@ -7,28 +7,25 @@ import '../../Profile.css'
 
 
 function Profile() {
-    //const [userProfile,setProfile] = useState(null)
 
         const [mypics, setPics] = useState([])
-        const [heartCount, setheartCount] = useState("")
+        const [happyfaceCount, sethappyFaceCount] = useState("")
         const [reviewCount, setreviewCount] = useState("")
         const {state} = useContext(UserContext)
         useEffect(()=>{
-            let isMounted = true
             fetch('/mylisting',{
                 headers:{
                     "Authorization":"Bearer "+localStorage.getItem("jwt")
                 }
             }).then(res=>res.json())
             .then(result=>{
-                // console.log(result)
                 setPics(result.mypost[0]);
-                if(mypics && mypics.heart && mypics.heart.length > 0){
-                    setheartCount(mypics.heart.length)
-                }
-                else{
-                    console.log("nope")
-                };
+                // if(mypics && mypics.happyface && mypics.happyface.length > 0){
+                //     sethappyFaceCount(mypics.happyface.length)
+                // }
+                // else{
+                //     console.log("nope")
+                // };
                 if(mypics && mypics.review && mypics.review.length > 0){
                     setreviewCount(mypics.review.length)
                 }
@@ -37,23 +34,13 @@ function Profile() {
                 }
                 console.log(result)
             })
-            // console.log(mypics)
-            // console.log(mypics.reviews)
-            // console.log(mypics.reviews.length)
+          
 
             
-},[heartCount],[reviewCount])
-// console.log(mypics)
-// console.log(mypics.reviews)
-// console.log(mypics.address)
-// console.log(mypics.location)
-//console.log(mypics.location.coordinates)
-//console.log(mypics.location.coordinates.length)
-//console.log(mypics.reviews.length)
+},[happyfaceCount],[reviewCount])
 
 return (
     <>
-    {/* {!userProfile ?  */}
         
         
       <div className='searchpage'>
@@ -71,8 +58,7 @@ return (
               
               </div>
               
-              <Button
-          variant="outlined">Leave Review</Button>
+              
 
           </div>
           <div className='searchResult-infoBottom' >
@@ -82,10 +68,10 @@ return (
                   <StarIcon
                   className="searchResult-star" />
                    <p> 
-                     <strong>
+                     {/* <strong>
                          
-                        {heartCount}
-                    </strong>  
+                        {happyFaceCount}
+                    </strong>   */}
                    </p>
               </div>
                <div className='searchResult-price'>
@@ -99,7 +85,6 @@ return (
 
 </div>
 
-{/* : <h2>loading...!</h2>} */}
 </>        
   
     )

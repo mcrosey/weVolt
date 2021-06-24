@@ -4,6 +4,8 @@ import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull';
 import BatteryCharging30Icon from '@material-ui/icons/BatteryCharging30';
 import ExploreIcon from '@material-ui/icons/Explore';
 import PersonIcon from '@material-ui/icons/Person';
+import BatteryAlertIcon from '@material-ui/icons/BatteryAlert';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../../App';
@@ -22,23 +24,12 @@ function Header() {
             alt="logo"
         />    
         </Link>  
-        <button className="btn #c62828 red darken-3"
-                onClick={()=>{
-                  localStorage.clear()
-                  dispatch({type:"CLEAR"})
-                  history.push('/login')
-                }}
-                >
-                    Logout
-                </button>
+       
+        
+                    
+                
 
                <div className= "header-right">
-               <Link to="/search">
-               <BatteryChargingFullIcon />
-               <p>
-                   Find a weVolt
-               </p>
-               </Link>
 
                    <Link to="/createlisting">
                    <BatteryCharging30Icon />
@@ -48,7 +39,7 @@ function Header() {
                    </Link>
 
                    <Link to="/maps">
-                    <ExploreIcon />
+                    <BatteryAlertIcon />
                     <p>
                         Need a level 3?
                     </p>
@@ -63,20 +54,24 @@ function Header() {
                    </Link>
 
 
-                   <Link to="/message">
-                   <PersonIcon />
-                   <p>
-                       Message
-                   </p>
-                   </Link>
-
-
                    <Link to="/login">
                     <ExitToAppIcon />
                     <p>
                         Log-in
                     </p>
                     </Link>
+
+                    <NotInterestedIcon 
+                    onClick={()=>{
+                        localStorage.clear()
+                        dispatch({type:"CLEAR"})
+                        history.push('/login')
+                        
+                    }}
+                    />
+                   
+                    
+               
 
                </div>
         </div>

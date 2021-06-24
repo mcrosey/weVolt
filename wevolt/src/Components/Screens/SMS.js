@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import UserProfile from './UserProfile';
+import '../../Message.css'
+
 
 class SMS extends Component {
 
@@ -11,10 +14,10 @@ class SMS extends Component {
 
   sendText = _ => {
     const { text } = this.state;
-    //pass text message GET variables via query string
     fetch(`/sendtext?recipient=${text.recipient}&textmessage=${text.textmessage}`)
     .catch(err => console.error(err))
   }
+
 
   render() {
     const { text } = this.state;
@@ -27,8 +30,8 @@ class SMS extends Component {
     return (
       
         <div style={{ marginTop: 10 }} >
-          <h2> Send Text Message </h2>
-          <label> Your Phone Number </label>
+          <h2> Contact Form </h2>
+          <label> Enter Number </label>
           <br />
           <input value={text.recipient}
             onChange={e => this.setState({ text: { ...text, recipient: e.target.value } })} />

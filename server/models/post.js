@@ -30,6 +30,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    contact:{
+        type: String,
+        required: true
+    },
     happyface:[{type:ObjectId, ref:"User"}],
     sadface:[{type:ObjectId, ref:"User"}],
     reviews:[{
@@ -39,7 +43,7 @@ const postSchema = new mongoose.Schema({
     postedBy:{
         type:ObjectId,
         ref:"User"
-    }
+    },
 });
 
 postSchema.pre('save', async function(next) {

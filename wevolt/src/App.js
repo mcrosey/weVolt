@@ -11,6 +11,7 @@ import ElectricMap from './Components/Screens/ElectricMap'
 import CreateListing from './Components/Screens/CreateListing'
 import Profile from './Components/Screens/Profile'
 // import SMSForm from './Components/Screens/Message'
+import UserProfile from './Components/Screens/UserProfile'
 import SMS from './Components/Screens/SMS'
 import {reducer, intialState} from './Reducer/userReducer'
 
@@ -64,8 +65,12 @@ return(
               <CreateListing />
             </Route>
 
-            <Route path="/profile">
+            <Route exact path="/profile">
               <Profile />
+            </Route>
+
+            <Route path="/profile/:userid">
+              <UserProfile />
             </Route>
 
             <Route exact path="/">

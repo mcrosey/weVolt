@@ -15,8 +15,9 @@ const Post = mongoose.model("Post")
 
 router.get('/alllistings', (req, res)=>{
     Post.find()
-    .populate("postedBy" ,"_id name")
-    .populate("review.postedBy","_id name")
+    .populate("postedBy" ,"_id userName")
+    .populate("review.postedBy","_id userName")
+    .populate("Contact", "_id contact" )
     .then((posts)=>{
         res.json({posts})
     }).catch(err=>{
@@ -27,9 +28,9 @@ router.get('/alllistings', (req, res)=>{
 
 
 router.post('/createlisting', requireLogin, (req, res)=>{
-    const {address, description, price, pic} = req.body
+    const {address, description, price, contact, pic} = req.body
 
-    if(!address || !description || !price || !pic){
+    if(!address || !description || !price || !contact || !pic){
         return  res.status(422).json({error:"Plase add all the fields"})
       }
       req.user.password = undefined
@@ -37,11 +38,11 @@ router.post('/createlisting', requireLogin, (req, res)=>{
           address,
           description,
           price,
+          contact,
           photo: pic,
           postedBy:req.user
           
       })
-      console.log(post)
       post.save(geocoder).then(result=>{
           res.json({post:result})
       })
@@ -54,6 +55,7 @@ router.post('/createlisting', requireLogin, (req, res)=>{
 router.get('/mylisting', requireLogin, (req, res)=>{
     Post.find({postedBy:req.user._id})
     .populate("PostedBy", "_id userName")
+    .populate("Contact", "_id phoneNumber")
     .then(mypost=>{
         res.json({mypost})
     })
@@ -100,8 +102,7 @@ const review = {
     },{
         new:true
     })
-    .populate("reviews.postedBy", "_id name")
-    .populate("postedBy", "_id name")
+    .populate("reviews.postedBy", "_id userName")
     .exec((err, result)=>{
         if(err){
         return res.status(422).json({error:err})
@@ -110,44 +111,6 @@ const review = {
         }
     })
 })
-
-router.delete('/deletelisting/:postId',requireLogin,(req,res)=>{
-    Post.findOne({_id:req.params.postId})
-    .populate("postedBy","_id")
-    .exec((err,post)=>{
-        if(err || !post){
-            return res.status(422).json({error:err})
-        }
-        if(post.postedBy._id.toString() === req.user._id.toString()){
-              post.remove()
-              .then(result=>{
-                  res.json(result)
-              }).catch(err=>{
-                  console.log(err)
-              })
-        }
-    })
-})
-
-// router.post('https://api.twilio.com/2010-04-01/Accounts/ACaffb76c56918b16443c279305e84b466/Messages.json', (req, res) => {
-//     res.header('Content-Type', 'application/json');
-    
-    
-//     messages.create({
-        
-//         To: req.body.to,
-//         From: +13237468398,
-//         Body: req.body.body
-//       })
-//     //   .then(message => console.log(message.sid));
-//       .then(() => {
-//         res.send(JSON.stringify({ success: true }));
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.send(JSON.stringify({ success: false }));
-//       });
-//   });
 
 
 module.exports = router

@@ -8,6 +8,7 @@ const CreateListing = ()=>{
     const [address, setAddress] = useState ("")
     const [description, setDescription] = useState ("")
     const [price, setPrice] = useState ("")
+    const [contact, setContact] = useState ("")
     const [image, setImage] = useState ("")
     const [url, setUrl] = useState ("")
     useEffect(()=>{
@@ -22,6 +23,7 @@ const CreateListing = ()=>{
                     address,
                     description,
                     price,
+                    contact,
                     pic:url
                 })
             }).then(res=>res.json())
@@ -86,6 +88,12 @@ const CreateListing = ()=>{
             placeholder="price" 
             value={price}
             onChange={(e)=>setPrice(e.target.value)}
+            />
+            <input 
+            type="text" 
+            placeholder="contact" 
+            value={contact}
+            onChange={(e)=>setContact(e.target.value)}
             />
             <div className="file-field input-field">
             <div className="btn #00796b teal darken-2">

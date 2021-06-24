@@ -21,7 +21,6 @@ function Map() {
   });
 
   useEffect(()=>{
-    // const getPins = async () =>{
         fetch('/alllistings', {
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
@@ -31,14 +30,9 @@ function Map() {
             console.log(result)
             setPins(result.posts)
         })
-        console.log(pins)
-    
+        console.log(pins)        
         
-        
-    // };
-    // getPins(pins)
   },[setPins])
-  //console.log(pins)
 
 
   return (

@@ -26,7 +26,15 @@
     justify-content:space-evenly;
     justify-items: space-between;
     width: 30vw;
-    
+    color: black;
     margin-right: 80px;
     padding: 20px;
+}
+
+.header-right  > a {
+    color: black
+}
+
+.header-right > a:hover{
+    color:red
 }

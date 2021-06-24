@@ -11,6 +11,7 @@ const Signup = ()=>{
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     
@@ -29,6 +30,7 @@ const Signup = ()=>{
                 firstName,
                 lastName,
                 email,
+                phoneNumber,
                 userName,
                 password
             })
@@ -104,6 +106,15 @@ const Signup = ()=>{
                             InputProps={{ startAdornment: <InputAdornment><Email />
                                 </InputAdornment>}}/>
                             
+                        <TextField 
+                            label="Phone Number" 
+                            margin="normal" 
+                            value={phoneNumber}
+                            onChange={(e)=>setPhoneNumber(e.target.value)}
+                            InputProps={{ startAdornment: <InputAdornment><Email />
+                                </InputAdornment>}}/>
+                            
+
                         <TextField 
                             label="Create Username" 
                             margin="normal" 

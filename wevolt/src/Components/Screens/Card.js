@@ -3,6 +3,8 @@ import {UserContext} from '../../App'
 import StarIcon from '@material-ui/icons/Star';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import {Link} from 'react-router-dom'
+
 
 function Card({source, title, description, price}) {
 
@@ -105,7 +107,7 @@ const leaveReview = (text, postId)=>{
                 data.map(item=>{
                     return(
                         <div className="card home-card" key={item._id}>
-                <h5>{item.postedBy.userName} 
+                <h5><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id : "/profile"}>{item.postedBy.userName}</Link> 
                 </h5>
                 
   

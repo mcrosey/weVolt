@@ -28,7 +28,7 @@
     height: 186px;
     display:flex;
     flex-direction:column;
-    justify-content: space-around;
+  
 }
 
 .indexcard > label {
@@ -43,7 +43,7 @@
 }
 
 .rating {
-    font-size:25px;
+    font-size:18px;
     font-weight: 35;
 }
 
