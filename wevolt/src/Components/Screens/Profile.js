@@ -1,97 +1,73 @@
-import { SettingsSystemDaydreamTwoTone } from '@material-ui/icons';
-import Axios from 'axios'
 import React, {useContext, useEffect, useState} from 'react';
-import { AssignedAddOnExtensionInstance } from 'twilio/lib/rest/api/v2010/account/incomingPhoneNumber/assignedAddOn/assignedAddOnExtension';
 import { UserContext } from '../../App';
 import '../../Profile.css'
 
 
-function Profile({url}) {
-    const [data, setData] = useState([null])
-    
+function Profile() {
+    const [mypics, setPics] = useState([null])
+    const [happyfaceCount, sethappyFaceCount] = useState("")
+    const [reviewCount, setreviewCount] = useState("")
     const {state} = useContext(UserContext)
     useEffect(()=>{
-        let mounted = true;
-        const loadData = async ()=>{
-        const response = await Axios.get('/mylisting',{
+        fetch('/mylisting',{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
-        });
-        if (mounted) {
-            setData(response.data);
-        }
-    };
-    loadData();
-    
-    return () =>{
-        mounted = false;
-    };
-}, [url]);
-
-if(!data){
-    return <div>Loading data </div>;
-}
-console.log(data)
-// return <div>{JSON.stringify(data)}</div>;
-// }
-
-//         }).then(res=>res.json())
-//         .then(result=>{
-//             setPics(result.mypost[0]);
-//                 if(mypics && mypics.happyface && mypics.happyface.length > 0){
-//                     sethappyFaceCount(mypics.happyface.length)
-//                 }
-//                 else{
-//                     console.log("nope")
-//                 };
-//                 if(mypics && mypics.review && mypics.review.length > 0){
-//                     setreviewCount(mypics.review.length)
-//                 }
-//                 else{
-//                     console.log("nope")
-//                 }
-//                 console.log(result)
-//             })
+        }).then(res=>res.json())
+        .then(result=>{
+            setPics(result.mypost[0]);
+                if(mypics && mypics.happyface && mypics.happyface.length > 0){
+                    sethappyFaceCount(mypics.happyface.length)
+                }
+                else{
+                    console.log("nope")
+                };
+                if(mypics && mypics.review && mypics.review.length > 0){
+                    setreviewCount(mypics.review.length)
+                }
+                else{
+                    console.log("nope")
+                }
+                console.log(result)
+            })
             
-// },[happyfaceCount],[reviewCount])
+},[happyfaceCount],[reviewCount])
 
 return (
+    <>
     
-    
-      
+        {mypics ? 
       <div className='searchpage'>
       <div className='searchPage-info'> 
       </div>
       <div className='searchResult'>
-      <div className='searchResult-info' key={data._id}>
+      <div className='searchResult-info' key={mypics._id}>
           <div className='searchResult-infoTop'>
           <h4>{state?state.userName: "loading"}</h4>
-              <p className="address">{data.address}</p>
-              <h3>{data.description}</h3>
+              <p className="address">{mypics.address}</p>
+              <h3>{mypics.description}</h3>
               <p>___</p>
               <div className='review-info'>
-              {/* <p>{reviewCount}Reviews will display here</p> */}
+              <p>{reviewCount}Reviews will display here</p>
               </div>
           </div>
           <div className='searchResult-infoBottom' >
               <div className="searchResult-stars">
                   <h5>recommend</h5>
-                  {/* {happyfaceCount} */}
+                  {happyfaceCount}
               </div>
                <div className='searchResult-price'>
-                   <h2>{data.price}</h2>
+                   <h2>{mypics.price}</h2>
                </div>
-            </div>        
-       </div>
-      <img src={data.photo} alt="" />
+           </div>        
+      </div>
+      <img src={mypics.photo} alt="" />
    </div>
- </div>
-
-       
+</div>
+: <h3>loading</h3>}
+</>        
   
-) 
-}    
-
+    )
+}
 
 export default Profile
