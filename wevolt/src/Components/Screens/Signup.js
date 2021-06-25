@@ -4,7 +4,7 @@ import M from 'materialize-css'
 import { Grid, TextField, Button, InputAdornment } from "@material-ui/core";
 import { AccountCircle, LockRounded, Email } from "@material-ui/icons"
 import CreateIcon from '@material-ui/icons/Create';
-
+import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 
 const Signup = ()=>{
     const history = useHistory()
@@ -16,7 +16,6 @@ const Signup = ()=>{
     const [password, setPassword] = useState("")
     
     const PostData = ()=>{
-        // eslint-disable-next-line
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
          M.toast({html: "invalid e-mail", classes:"#d50000 red accent-4"})
          return
@@ -111,7 +110,7 @@ const Signup = ()=>{
                             margin="normal" 
                             value={phoneNumber}
                             onChange={(e)=>setPhoneNumber(e.target.value)}
-                            InputProps={{ startAdornment: <InputAdornment><Email />
+                            InputProps={{ startAdornment: <InputAdornment><PhoneIphoneIcon />
                                 </InputAdornment>}}/>
                             
 

@@ -1,6 +1,6 @@
 import React, {useEffect, createContext, useReducer, useContext} from 'react'
 import { BrowserRouter, Switch, Route,  useHistory} from "react-router-dom"
-import "./App.css"
+import {reducer, intialState} from './Reducer/userReducer'
 import Home from './Components/Screens/Home'
 import Header from './Components/Screens/Header'
 import Footer from './Components/Screens/Footer'
@@ -10,11 +10,9 @@ import Signup from './Components/Screens/Signup'
 import ElectricMap from './Components/Screens/ElectricMap'
 import CreateListing from './Components/Screens/CreateListing'
 import Profile from './Components/Screens/Profile'
-// import SMSForm from './Components/Screens/Message'
 import UserProfile from './Components/Screens/UserProfile'
 import SMS from './Components/Screens/SMS'
-import {reducer, intialState} from './Reducer/userReducer'
-
+import "./App.css"
 
 export const UserContext = createContext()
 
@@ -34,51 +32,45 @@ const Routing = () =>{
   },[])
 
 return(
-  
         
+  <Switch>
+      <Route path="/search">
+        <SearchPage />
+      </Route>
+      
+      <Route path="/login">
+        <Login />
+      </Route>
+      
+      <Route path="/signup">
+        <Signup />
+      </Route>
 
-        <Switch>
-            <Route path="/search">
-              <SearchPage />
-            </Route>
-            
-            <Route path="/login">
-              <Login />
-            </Route>
-            
-            <Route path="/signup">
-              <Signup />
-            </Route>
+      <Route path="/maps">
+        <ElectricMap />
+      </Route>
 
-            <Route path="/maps">
-              <ElectricMap />
-            </Route>
+      <Route path="/message">
+        <SMS />
+      </Route>
 
-            
+      <Route path="/createlisting">
+        <CreateListing />
+      </Route>
 
-            <Route path="/message">
-              <SMS />
-            </Route>
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
 
+      <Route path="/profile/:userid">
+        <UserProfile />
+      </Route>
 
-            <Route path="/createlisting">
-              <CreateListing />
-            </Route>
-
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
-
-            <Route path="/profile/:userid">
-              <UserProfile />
-            </Route>
-
-            <Route exact path="/">
-              <Home />
-            </Route>
-          
-        </Switch>
-        
+      <Route exact path="/">
+        <Home />
+      </Route>
+    
+  </Switch>
 
       
   )

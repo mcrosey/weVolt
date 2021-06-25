@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../../App';
 import {useParams, Link} from 'react-router-dom'
+import SmsIcon from '@material-ui/icons/Sms';
 import '../../Profile.css'
 
 
@@ -45,8 +46,6 @@ return (
               
               </div>
               
-              
-
           </div>
           <div className='searchResult-infoBottom' >
           {/* <p>{userProfile.happyface.length}</p>

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import M from 'materialize-css'
 
 
@@ -59,60 +60,60 @@ const CreateListing = ()=>{
         })
         
     }
-        
 
-    return (
-        <div className="card input-filed"
-        style={{
-            margin:"30px auto",
-            maxWidth:"500px",
-            padding:"20px",
-            textAlign:"center",
-            backgroundColor:"white"
-        }}
-        >
-            <input 
-            type="text" 
-            placeholder="address" 
-            value={address}
-            onChange={(e)=>setAddress(e.target.value)}
-            />
-            <input 
-            type="text" 
-            placeholder="description" 
-            value={description}
-            onChange={(e)=>setDescription(e.target.value)}
-            />
-            <input 
-            type="text" 
-            placeholder="price" 
-            value={price}
-            onChange={(e)=>setPrice(e.target.value)}
-            />
-            <input 
-            type="text" 
-            placeholder="contact" 
-            value={contact}
-            onChange={(e)=>setContact(e.target.value)}
-            />
-            <div className="file-field input-field">
-            <div className="btn #00796b teal darken-2">
-                <span>Upload Image</span>
-                <input type="file" onChange={(e)=>setImage(e.target.files[0])}/>
-            </div>
-            <div className="file-path-wrapper">
-                <input className="file-path validate" type="text" />
-            </div>
-            
-            </div>
-            <button className="btn waves-effect waves-light #00796b teal darken-2"
-            onClick={()=>postDetails()}
-            >
-                    Post
-                </button>
-            
+return (
+    <div className="card input-filed"
+    style={{
+        margin:"30px auto",
+        maxWidth:"500px",
+        padding:"20px",
+        textAlign:"center",
+        backgroundColor:"white"
+    }}
+    >
+        <input 
+        type="text" 
+        placeholder="address" 
+        value={address}
+        onChange={(e)=>setAddress(e.target.value)}
+        />
+        <input 
+        type="text" 
+        placeholder="description" 
+        value={description}
+        onChange={(e)=>setDescription(e.target.value)}
+        />
+        <input 
+        type="text" 
+        placeholder="price" 
+        value={price}
+        onChange={(e)=>setPrice(e.target.value)}
+        />
+        <input 
+        type="text" 
+        placeholder="contact number" 
+        value={contact}
+        onChange={(e)=>setContact(e.target.value)}
+        />
+        <div className="file-field input-field">
+        <div className="upload" >
+            <AddAPhotoIcon />
+            <span>Upload Image</span>
+            <input type="file" onChange={(e)=>setImage(e.target.files[0])}/>
         </div>
-    )
+        <div className="file-path-wrapper">
+            <input className="file-path validate" type="text" />
+        </div>
+        
+        </div>
+        <button className="btn waves-effect waves-light #00796b teal darken-2"
+        onClick={()=>postDetails()}
+        >
+                Post
+            </button>
+        
+    </div>
+)
 
 }
 

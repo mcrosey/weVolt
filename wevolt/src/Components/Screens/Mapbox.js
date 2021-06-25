@@ -1,12 +1,10 @@
-import RoomIcon from '@material-ui/icons/Room';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
-import StarIcon from '@material-ui/icons/Star';
+import CheckIcon from '@material-ui/icons/Check';
+import RoomIcon from '@material-ui/icons/Room';
 import '../../Mapbox.css'
 import '../../Card.css'
-import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 
 
 function Map() {
@@ -19,21 +17,35 @@ function Map() {
     longitude: -83.9207,
     zoom: 5
   });
+const [selectedPins, setSelectedPin] =useState(null);  
 
   useEffect(()=>{
-        fetch('/alllistings', {
-            headers:{
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
-            }
-        }).then(res=>res.json())
-        .then(result =>{
-            console.log(result)
-            setPins(result.posts)
-        })
-        console.log(pins)        
+    const listener = e => {
+      if(e.key === "Escape"){
+        setSelectedPin(null);
+      }
+    };
+    window.addEventListener("keydown", listener);
+
+    return () => {
+      window.addEventListener("keydown", listener);
+    };
+  }, []);
+    
+
+  useEffect(()=>{
+      fetch('/alllistings', {
+          headers:{
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
+          }
+      }).then(res=>res.json())
+      .then(result =>{
+          console.log(result)
+          setPins(result.posts)
+      })
+      console.log(pins)        
         
   },[setPins])
-
 
   return (
 
@@ -45,8 +57,6 @@ function Map() {
       mapStyle="mapbox://styles/mcrosey/ckq1solmo1ol518qv9rsgtorg"
     >
         {pins.map(item=>(
-            
-            
             <div className='marker' key={item._id}>
         <Marker
             latitude={item.location.coordinates[1]}
@@ -55,27 +65,28 @@ function Map() {
             offsetTop={-10}
         >
             
-            <RoomIcon style={{fonstsize:viewport.zoom * 7, color: 'blue',}} />
-            </Marker> 
-            <Popup
-            latitude={item.location.coordinates[1]}
-            longitude={item.location.coordinates[0]}
-            closeButton={true}
-            closeOnClick={true}
-            anchor="top" >
-                <div className="indexcard">
-                  <label>Address</label>
-                  <h4 className="place">{item.address}</h4>
-                  <label>Recommended</label>
-                  <h4 className="rating">{item.happyface.length}<InsertEmoticonIcon /></h4>
-                  <label>Don't Recommend</label>
-                  <h4 className="rating">{item.sadface.length}<SentimentVeryDissatisfiedIcon /></h4>
-                 
-                </div>
-            </Popup> 
-            </div>  
-            ))}
-           </ReactMapGL> 
+        <RoomIcon style={{fonstsize:viewport.zoom * 7, color: 'blue',}} />
+        </Marker> 
+
+        {setPins ? (
+        <Popup
+        latitude={item.location.coordinates[1]}
+        longitude={item.location.coordinates[0]}
+        
+        closeButton={true}
+        closeOnClick={true}
+        anchor="top" >
+            <div className="indexcard">
+              <label>Address</label>
+              <h4 className="place">{item.address}</h4>
+              <label>Recommend</label>
+              <h4 className="rating"><CheckIcon />{item.happyface.length}</h4>
+            </div>
+        </Popup> 
+        ) : null}
+        </div>  
+        ))}
+        </ReactMapGL> 
     </div>
   );
 }

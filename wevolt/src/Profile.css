@@ -37,9 +37,18 @@
   width: 40vw;
 }
 
+.searchResult-infoTop > h4 {
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 30px;
+  color: rgb(114, 66, 11);
+}
+
 .searchResult-infoTop > h3 {
   font-weight: 500;
-  margin-top: 10px
+  margin-top: 10px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .searchResult-infoTop >p {
@@ -64,6 +73,7 @@
 
 .searchResults-price > p {
   text-align: right;
+  position:absolute;
 }
 
 .searchResult-price {

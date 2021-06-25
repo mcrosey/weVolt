@@ -1,4 +1,7 @@
-.card {
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Nanum+Myeongjo&family=Quicksand:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Manrope:wght@300&family=Nanum+Myeongjo&family=Quicksand:wght@300&display=swap');
+
+.card .card-home{
     margin: 10px;
     border: 0px solid black;
     border-radius: 10px;
@@ -13,30 +16,54 @@
     transform: scale(1.07);
 }
 
-.card > img {
-    object-fit: fill;
-    min-width: 300px;
-    max-width: 400px;
-    min-height: 200px;
-    width: 100%;
+.card-content{
+    align-content: center;
 }
 
-.card-info {
-    margin-top: -9px;
-    border-radius: 10px;
-    padding: 20px;
-    padding-top: 20px;
-    border: 1;
+/* checkmark icon */
+
+.searchResult-recommend {
+    transform: scale(1);
+    color: rgb(15, 94, 15)
+}
+/* number of do recommend */
+
+.card-content > h6 {
+    font-size: 10px;
 }
 
-.card-info > h2 {
-    font-size: 18px;
-    font-weight: 600;
+.card-content > .rec{
+    color: rgb(15, 94, 15)
 }
 
-.card-info > h4 {
-    font-size: 14px;
-    font-weight: 300;
-    margin-top: 8px;
-    margin-bottom: 8px;
+/* x mark icon */
+.searchResult-notrecommend {
+    transform: scale(1);
+    color: rgb(150, 18, 18)
+}
+
+.card-content > .no-red {
+    color: rgb(150, 18, 18)
+}
+
+/* address */
+
+.address-display> h5 {
+    font-size: 20px !important;
+    color: rgb(6, 6, 94);
+    font-weight: bolder;
+    font-family: 'Caveat', cursive;
+    font-family: 'Manrope', sans-serif;
+    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* description of charger  */
+.description-display > h4 {
+    font-size: 25px !important;
+    color:rgb(119, 79, 5);
+    font-family: 'Caveat', cursive;
+    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Quicksand', sans-serif;
+    
 }

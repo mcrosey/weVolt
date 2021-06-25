@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../../Banner.css'
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
@@ -14,10 +14,11 @@ function Banner() {
                 </h5>
 
                 <Button onClick={()=>
-                history.push('/search')}
-                // setShowSearch(!showSearch)} 
-                variant='outlined'>
-                    Find a voltShare</Button>
+                    history.push('/search')}
+                    variant='outlined'
+                    >
+                    Find a voltShare
+                </Button>
             
             </div>
         </div>

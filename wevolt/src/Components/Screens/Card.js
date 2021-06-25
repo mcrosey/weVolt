@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {UserContext} from '../../App'
-import StarIcon from '@material-ui/icons/Star';
-import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import CheckIcon from '@material-ui/icons/Check';
+import ClearIcon from '@material-ui/icons/Clear';
 import {Link} from 'react-router-dom'
+import '../../Card.css'
 
 
 function Card({source, title, description, price}) {
@@ -103,52 +103,68 @@ const leaveReview = (text, postId)=>{
 
     return (
         
-              <div className="home">{
+              <div className="home">
+                  {
                 data.map(item=>{
                     return(
                         <div className="card home-card" key={item._id}>
                 <h5><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id : "/profile"}>{item.postedBy.userName}</Link> 
                 </h5>
                 
-  
+                
                 <div className="card-image">
                     <img src={item.photo} alt="charger display"/>
                 </div>
-                    <div className="card-content">
-                    <InsertEmoticonIcon
-                  className="searchResult-star" 
-                    onClick={()=>{happyPost(item._id)}}
-                    />
-                    <h6>{item.happyface.length} Recommend this charger</h6>
-
-                    <SentimentVeryDissatisfiedIcon
-                  className="searchResult-star" 
-                    onClick={()=>{sadPost(item._id)}}
-                    />
-                    <h6>{item.sadface.length} Would not recommend</h6>
                     
+                    <div className="card-content">
+                        <CheckIcon
+                            className="searchResult-recommend" 
+                            onClick={()=>{happyPost(item._id)}}
+                        />
+                        <h6 className="rec" >{item.happyface.length} Would recommned</h6>
+
+                        <ClearIcon
+                            className="searchResult-notrecommend" 
+                            onClick={()=>{sadPost(item._id)}}
+                        />
+                        <h6 className="no-rec" >{item.sadface.length} Would not recommend</h6>
+                    </div>    
+
+                    <div className="address-display"> 
                         <h5>{item.address}</h5>
+                    </div>    
+
+                    <div className="description-display">
                         <h4>{item.description}</h4>
+                    </div>   
+
                         {
-                        item.reviews.map(record=>{
-                            return(
-                                <h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.userName}</span>{record.text}</h6>
-                            )
-                        })
-                    }
+                            item.reviews.map(record=>{
+                                return(
+                                    <h6 className="userName" 
+                                    key={record._id}>
+                                        <span style={{fontWeight:"500"}}>
+                                            {record.postedBy.userName}
+                                        </span>{record.text}</h6>
+                                )
+                            })
+                        }
+
+
                     <form onSubmit={(e)=>{
                         e.preventDefault()
                         leaveReview(e.target[0].value, item._id)
-                    }}>
-                        <input type="text" placeholder="review"/>
+                        }}>
+
+                        <input type="text" placeholder="leave review"/>
                     </form>
-                    </div>
                 </div>
-                    )
-                })
-            }  
+               
+                )
+            })
+        }  
 
-
+        
         </div>
     )
 
