@@ -27,15 +27,16 @@ return (
     <div className="mapview">
         <Mapbox />
         <div className="blankspace">
-              
           </div>
-          <div class="container">
-      <div className="carddisplay" >
-          <Card />
-          <div />
+          <div className="container">
+              <div className="wrapper" >
+                <Card />
+       <div className="carddisplay" >
           </div>
+          </div>
+          <div className="Footer" />
       </div>
-    </div>
+     </div>
     )
 }
 

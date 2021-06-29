@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../../App';
 import '../../Profile.css'
 
-
 function Profile() {
     const [mypics, setPics] = useState([null])
     const [happyfaceCount, sethappyFaceCount] = useState("")
@@ -53,7 +52,6 @@ return (
           </div>
           <div className='searchResult-infoBottom' >
               <div className="searchResult-stars">
-                  <h5>recommend</h5>
                   {happyfaceCount}
               </div>
                <div className='searchResult-price'>

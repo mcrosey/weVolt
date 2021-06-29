@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import UserProfile from './UserProfile';
 import '../../Message.css'
-
 
 class SMS extends Component {
 
@@ -18,7 +16,6 @@ class SMS extends Component {
     .catch(err => console.error(err))
   }
 
-
   render() {
     const { text } = this.state;
     const spacer = {
@@ -29,8 +26,17 @@ class SMS extends Component {
     }
     return (
       
-        <div style={{ marginTop: 10 }} >
-          <h2> Contact Form </h2>
+        <div className= 'card-message'
+        style={{ 
+          marginTop: 10, 
+          margin:"30px auto",
+          maxWidth:"500px",
+          padding:"20px",
+          textAlign:"center",
+          backgroundColor:"white"
+      }}
+        >
+          <h2> Contact </h2>
           <label> Enter Number </label>
           <br />
           <input value={text.recipient}

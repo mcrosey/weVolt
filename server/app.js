@@ -5,10 +5,10 @@ const PORT = 6000
 const {mongoURI} =require('./keys')
 const cors =require ('cors');
 const twilio =require ('twilio');
-const accountSid = 'ACaffb76c56918b16443c279305e84b466';
-const authToken = 'e6e3816577851033ffc54bf1875608f6';
+const accountSid = '';
+const authToken = '';
 const client = require ('twilio') (accountSid, authToken);
-
+//must enter authtoken and account sid for proper functionality 
 
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,

@@ -3,13 +3,6 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const requireLogin = require('../middleware/requireLogin')
 const geocoder = require('../middleware/geocoder')
-// const accountSid = 'ACaffb76c56918b16443c279305e84b466';
-// const authToken = 'e6e3816577851033ffc54bf1875608f6';
-// const twilio = require('twilio')
-// const client =  new twilio(
-//     accountSid,
-//     authToken
-//   );
 
 const Post = mongoose.model("Post")
 

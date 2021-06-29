@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-//import {UserContext } from '../../App'
 import M from 'materialize-css'
 import { Grid, TextField, Button, InputAdornment } from "@material-ui/core";
 import { AccountCircle, LockRounded } from "@material-ui/icons"
-//import '../../Login.css'
 
 const Login = ()=>{
-    //const {state, dispatch} = useContext(UserContext)
     const history = useHistory()
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState({
+        password:'',
+        showPassword: false,
+    });
     const [userName, setUserName] = useState("")
     const PostData = ()=>{
         fetch('/signin',{
@@ -30,7 +30,6 @@ const Login = ()=>{
             else{
                 localStorage.setItem("jwt", data.token)
                 localStorage.setItem("user", JSON.stringify(data.user))
-                //dispatch({type:"USER", payload:data.user})
                 M.toast({html:"signed in successfully", classes: "#66bb6a green lighten-1"})
                 history.push('/')
             }
@@ -79,11 +78,14 @@ const Login = ()=>{
                             InputProps={{ startAdornment: <InputAdornment><AccountCircle /></InputAdornment>}}/>
                             
                         <TextField 
+                            type={setPassword.showPassword ? 'text' : 'password'}
                             label="Password" 
                             margin="normal" 
                             value={password}
+                            secureTextEntry={true}
                             onChange={(e)=>setPassword(e.target.value)}
-                            InputProps={{ startAdornment: <InputAdornment><LockRounded /></InputAdornment>}}/>
+                            InputProps={{ startAdornment: <InputAdornment><LockRounded />
+                            </InputAdornment>}}/>
                             
                         <div style={{ height:20}} />
                         
@@ -107,9 +109,6 @@ const Login = ()=>{
             </Grid>
         </div>
     );
-        
-                
-                
 };
 
 export default Login

@@ -111,7 +111,6 @@ const leaveReview = (text, postId)=>{
                 <h5><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id : "/profile"}>{item.postedBy.userName}</Link> 
                 </h5>
                 
-                
                 <div className="card-image">
                     <img src={item.photo} alt="charger display"/>
                 </div>
@@ -149,7 +148,6 @@ const leaveReview = (text, postId)=>{
                                 )
                             })
                         }
-
 
                     <form onSubmit={(e)=>{
                         e.preventDefault()
